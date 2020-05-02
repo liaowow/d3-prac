@@ -18,5 +18,42 @@ D3 selections are created with the `.selectAll()` or `.select()` methods.
 
 Reference: [Mike Bostock's article](https://bost.ocks.org/mike/selection/)
 
+
+### Data-Element Relationship
+
+The `.data()` method takes an array of any type as its parameter and binds a datum to each element in the selection returned by `.selectAll()`:
+```js
+let dataset = [55,34,23,22,59];
+d3.selectAll("p")
+   .data(dataset);
+```
+
+- We have five items inside dataset and we assume there are five `<p>` elements in the HTML.
+- Every instruction that follows the `.data()` method is therefore executed five times.
+- The `.data()` function accepts an array of any type (in this example, we use an array of numbers).
+- The data is bound to elements as a property.
+- Binding data to the elements allows the data to remain associated with the elements on the DOM even after you want to re-use the `.selectAll()` method to create a new selection.
+
+
+### The d parameter
+
+Think of the `d` as representing the d in data. It represents the value bound to each element in the d3 chain.
+```js
+let dataset = [55,34,23,22,59];
+
+let svg = d3.select("body")
+                 .selectAll("div")
+                 .data(dataset)
+                 .text(function(d) {
+                         return d;
+                  });
+```
+- The `.text()` method took an anonymous function with a d parameter that returns the data value inside each of the div elements.
+- d3 will append that value as the text inside each of the five `div` elements it created from the `dataset` array.
+- The `.data()` method assigns the correct value to the d parameter, or the first parameter, for the elements in question.
+- The functions you use don’t always need to be anonymous, but you do need to include a `d` parameter, or a first argument, if you want to access the data.
+- You can also optionally include an `i` parameter, or second parameter, if you want to access the index.
+- If we wanted to introduce more complicated logic like conditionals, a loop, or append other text, we could achieve this just like we would in the body of any other function.
+
 ### Resource
 Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
