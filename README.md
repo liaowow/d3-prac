@@ -17,4 +17,4 @@ D3 selections are created with the `.selectAll()` or `.select()` methods.
 - The `.selectAll()` returns an array-like structure with grouped nodes for all the elements that match the selector.
 
 ### Resource
-Codecademy -- Learn D3
+Codecademy -- [Learn D3] (https://www.codecademy.com/learn/learn-d3)
