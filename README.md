@@ -55,5 +55,30 @@ let svg = d3.select("body")
 - You can also optionally include an `i` parameter, or second parameter, if you want to access the index.
 - If we wanted to introduce more complicated logic like conditionals, a loop, or append other text, we could achieve this just like we would in the body of any other function.
 
+
+### Styling Data
+
+The `.attr()` method takes two parameters: 
+1. the HTML attribute you wish to change, and 
+2. the value you wish to assign it.
+
+Similarly, the `.style()` method takes two parameters: 
+1. the CSS property you wish to change, and 
+2. the value you wish to assign it.
+
+```js
+let svg = d3.select("body")
+            .selectAll("div")
+            .data(dataset)
+            .attr("id", function(d,i){ 
+                    return "element-" + i; 
+                })
+            .style("width", function(d){
+                   return d + "px";
+                });
+```
+- The `.attr()` method changed the HTML attribute `id` to be based on the element index in the dataset
+- The `.style()` method computed the width to be a function of the datum value
+
 ### Resource
 Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
