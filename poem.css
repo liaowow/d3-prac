@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Major+Mono+Display');
+
+body{
+  font-family: 'Major Mono Display', sans-serif;
+}
+
+h3 {
+  text-align: center;
+  padding: 20px;
+}
+
+p {
+  font-family: 'Inconsolata', sans-serif;
+  margin-left: 25px;
+  cursor: pointer;
+  text-align: center;
+}
