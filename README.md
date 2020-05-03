@@ -80,5 +80,38 @@ let svg = d3.select("body")
 - The `.attr()` method changed the HTML attribute `id` to be based on the element index in the dataset
 - The `.style()` method computed the width to be a function of the datum value
 
+
+### Enter and Append
+
+#### Enter
+- The `.enter()` method consolidates the difference between the number of existing elements in the selection and the number of elements in the dataset.
+- It is invoked on the update selection that `.data()` returns.
+- If there are more data points than existing “selected” elements, `.enter()` creates placeholder elements and returns an enter selection which specifies which elements need to be added.
+- For example, if there were 0 existing elements in the update selection and 10 data points, enter would compute 10 elements in the enter selection.
+- The `.enter()` method does not actually append the elements, it just computes how many need to be added.
+
+#### Append
+- The `.append("element")` method takes a string parameter with the element name you wish to append, it then analyzes the selection that gets handed off to it, and generates the specified elements on the DOM.
+- It returns a reference to the elements it created.
+
+Note: 
+If you ever want to analyze the data in the selection and log it to the console, you can always use the `.nodes()` method on your selection. This method will log the array of grouped nodes in the selection.
+
+After making a selection, creating a new visualization, whose elements are not already in the DOM, usually follows the `.data()` `.enter()` and `.append()` pattern:
+```js
+let dataset = [55,34,23,22,59];
+d3.select("body")
+   .selectAll("div")
+   .data(dataset)
+   .enter()
+   .append("div");
+```
+- Everything after `.data()` will therefore get executed five times
+- The `.enter()` method created five placeholder elements because there were no div elements in the DOM
+- Five div’s were appended with the div elements
+- Those divs each have a `_data_` property with the values of 55, 34, 2, 22, 59, respectively
+- Each step of the chain returned a reference to those elements.
+
+
 ### Resource
 Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
