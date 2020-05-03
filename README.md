@@ -142,6 +142,14 @@ selection
 - The code modifies the text on mouse over, by selecting it with d3 and appending new text.
 - You can pass different types of events, some of the most popular events include `"click"`, `"mouseover"`, `"mouseout"`, `"mouseenter"` and more.
 
+## Recap
+- Selections are array-like data structures that include a reference to the elements with D3 methods and their hierarchy in the DOM.
+- You can create a selection with `.selectAll()` or a single-item selection with `.select()`
+- The `.data()`, `.enter()` and `.append()` methods all work in unison to create elements and associate their corresponding data with the existing DOM
+- The `d` parameter inside functions used in a D3 context represents the datum associated with the element at hand
+- The `.attr()` and `.style()` methods allow you to customize the appearance of each element based on data.
+The `.on()` method can bind an event listener on the elements in the selection.
+
 
 ### Resource
 Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
