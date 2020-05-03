@@ -113,5 +113,35 @@ d3.select("body")
 - Each step of the chain returned a reference to those elements.
 
 
+### Chaining and Returning
+
+You’ll see that the d3 community will indent some parts of the chains with four spaces, and other parts of the chain with two. The lines with two spaces indicate that the selection has changed:
+```js
+var h1 = d3.selectAll("section")
+    .style("background", "steelblue")
+  .append("h1")
+    .text("Hello!");
+```
+
+### Interactivity with Events
+
+Here's a basic d3 design pattern:
+1. Create a selection
+2. Associate data with that selection
+3. Append elements to the DOM
+4. Modify the elements based on the data
+
+```js
+selection
+    .on("mouseover", function(d,i) {
+          d3.select(this).text(d);
+    });
+```
+- The `.on()` method takes a string parameter with the name of the event and a function to handle that event when it is triggered. It binds an event listener to the elements in the selection. 
+- In the body of the function, we use the `this` keyword. In the function’s context, `this` refers to the event’s DOM element.
+- The code modifies the text on mouse over, by selecting it with d3 and appending new text.
+- You can pass different types of events, some of the most popular events include `"click"`, `"mouseover"`, `"mouseout"`, `"mouseenter"` and more.
+
+
 ### Resource
 Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
