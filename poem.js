@@ -21,6 +21,13 @@ selection
 // targeting green circle
 d3.select(".target")
   .style("stroke-width", 7)
-  .style("opacity", 0.5)
+  // .style("opacity", 0.5)
 
 // practicing coordinates
+let coordinates = d3.select("#coordinate")
+coordinates.append("circle")
+           .attr("cx", 20).attr("cy", 20).attr("r", 20).style("fill", "aqua")
+coordinates.append("circle")
+           .attr("cx", 140).attr("cy", 150).attr("r", 20).style("fill", "deeppink")
+coordinates.append("circle")
+           .attr("cx", 280).attr("cy", 50).attr("r", 20).style("fill", "gold")
