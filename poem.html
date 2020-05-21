@@ -2,13 +2,33 @@
 <html> 
   <head>
     <link rel="stylesheet" href="poem.css">
-	<script src="https://d3js.org/d3.v5.min.js"></script>
+	  <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="poem.js" defer></script>
   </head>
 
   <body>
     <h3>Love, Maybe by Audre Lorde</h3>
-    <div id="viz">
+    <div id="viz" style="text-align: center;">
+      <!-- Add a svg shape -->
+      <svg>
+        <circle class="target" style="fill: #69b3a2;" stroke="black" cx="50%" cy="50%" r=40></circle>
+        <circle style="fill: yellow;" stroke="black" cx=200 cy=25 r=15></circle>
+        <rect x="70" y="0" width="10" height="10"></rect>
+        <ellipse cx="10" cy="50" rx="10" ry="5"></ellipse>
+        <polygon points="0,0 10,5 20,0 20,20 10,15 0,20"></polygon>
+        <polyline points="0,0 10,5 20,0 20,20 10,15 0,20" stroke="red"></polyline>
+        <path style="fill: red;" d="M 10,30
+        A 20,20 0,0,1 50,30
+        A 20,20 0,0,1 90,30
+        Q 90,60 50,90
+        Q 10,60 10,30 z"/>
+        <line x1="90" y1="85" x2="50" y2="50" stroke="black" stroke-width="2"></line>
+      </svg>
     </div>     
+
+    <!-- Add a svg area, empty -->
+    <svg id="coordinate" height=200 width=450>
+    </svg>
+
   </body>
 </html>
