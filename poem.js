@@ -32,7 +32,7 @@ coordinates.append("circle")
 coordinates.append("circle")
            .attr("cx", 280).attr("cy", 50).attr("r", 20).style("fill", "gold")
 
-/* practicing scales */
+/* practicing scales and axis */
 // select the svg area
 const scale = d3.select("#scale")
 
@@ -42,6 +42,9 @@ const x = d3.scaleLinear()
             .range([0, 400]) // This is the corresponding value I want in Pixel
 
 console.log(x(100))
+
+// Show the axis that corresponds to this scale
+scale.call(d3.axisBottom(x))
 
 // Add 3 dots for 0, 50 and 100%
 scale.append("circle")
