@@ -102,3 +102,15 @@ const yForMargin = d3.scaleLinear()
 
 area.append("g")
     .call(d3.axisLeft(yForMargin))
+
+// add scatterplot data
+const scatterplotData = [{x: 10, y: 20}, {x: 40, y: 90}, {x: 80, y: 50}]
+
+// Add 3 dots for 0, 50 and 100%
+area.selectAll("svg")
+    .data(scatterplotData)
+    .enter()
+    .append("circle")
+      .attr("cx", function(d) { return xForMargin(d.x) })
+      .attr("cy", function(d) { return yForMargin(d.y) })
+      .attr("r", 7)
