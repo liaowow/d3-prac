@@ -1,5 +1,4 @@
 /* D3 Design Pattern: selection -> data -> enter -> append */
-
 let climate_daly_data = [
     {region: "Low-and-middle-income countries of the African Region", deaths: 57},
     {region: "Low-and-middle-income countries of the Americas", deaths: 2},
@@ -10,11 +9,10 @@ let climate_daly_data = [
     {region: "High income countries", deaths: 0.23}
 ];
 
-
 // `i` is an integer represents the index of the element that the user is hovering over. Note that this way of accessing children starts counting at 1, not zero.
 // `toggle` represents the boolean flag to apply the corresponding CSS class
 // The `toggle` element allows us to remove the class styles after the user stops hovering over the elements.
-let toggleClass = (i,toggle) => {
+let toggleClass = (i, toggle) => {
     // select both the bar chart and the corresponding legend element with d3...
     // ...by accessing the nth child of both the #legend and #viz elements;
     // use the .classed() method to remove and apply the styles to the corresponding elements.
@@ -58,3 +56,15 @@ listSelection.data(climate_daly_data)
              .on("mouseout", function(d, i) {
                 toggleClass(i + 1, false)
              })
+
+// practice d3-fetch
+const url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/862592/"
+d3.json(url)
+.then(res => {
+    alert(`Current temperature: ${
+    res.consolidated_weather[0].the_temp
+    }°C`)
+})
+.catch(() => {
+    alert("Oh no, something horrible happened!")
+})

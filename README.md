@@ -8,6 +8,33 @@ Key Features:
 - d3 leaves a lot of room for creative customization because the elements the data are bound to can be styled like any regular DOM element
 - d3 supports interactivity triggered by browser events
 
+### Grabbing Data
+
+(`d3-fetch`)[https://github.com/d3/d3-fetch] provides some utility methods that will fetch data from a file and parse it into a Javascript object.
+
+In `d3-fetch`, the methods are just the names of the file format, and they take one parameter: the URL of your file. When you execute one of these methods, they'll respond with a `Promise`, which will resolve with the parsed data.
+
+For example, to grab the current weather in Oslo, Norway, we can query the MetaWeather API and grab the temperature from the parsed response:
+
+```js
+const url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/862592/"
+d3.json(url)
+  .then(res => {
+    alert(`Current temperature: ${
+      res.consolidated_weather[0].the_temp
+    }°C`)
+  })
+  .catch(() => {
+      alert("Oh no, something horrible happened!")
+  })
+```
+
+#### d3-dsv
+
+One of the nice things about the d3 API is that it's very modular. This allows us to often use its internal logic if we want to.
+
+(`d3-dsv`)[https://github.com/d3/d3-dsv] has many methods for converting between Javascript objects and **dsv** format. It also has some command-line utilities for converting between JSON, dsv, and dsv with different delimiters.
+
 
 ### Selection
 
@@ -153,3 +180,4 @@ The `.on()` method can bind an event listener on the elements in the selection.
 
 ### Resource
 Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
+Amelia Wattenberger -- [Blog: Learn Data Viz](https://wattenberger.com/blog/d3#grabbing-data)
