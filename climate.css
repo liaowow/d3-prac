@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Thasadith:400,700');
 
-body{
+body {
   font-family: 'Thasadith', sans-serif;
 }
 
@@ -9,7 +9,7 @@ h3 {
   color: #0769ad;
 }
 
-li{
+li {
  cursor: pointer;
 }
 

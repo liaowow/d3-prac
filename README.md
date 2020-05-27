@@ -10,7 +10,7 @@ Key Features:
 
 ### Grabbing Data
 
-(`d3-fetch`)[https://github.com/d3/d3-fetch] provides some utility methods that will fetch data from a file and parse it into a Javascript object.
+[`d3-fetch`](https://github.com/d3/d3-fetch) provides some utility methods that will fetch data from a file and parse it into a Javascript object.
 
 In `d3-fetch`, the methods are just the names of the file format, and they take one parameter: the URL of your file. When you execute one of these methods, they'll respond with a `Promise`, which will resolve with the parsed data.
 
@@ -33,7 +33,7 @@ d3.json(url)
 
 One of the nice things about the d3 API is that it's very modular. This allows us to often use its internal logic if we want to.
 
-(`d3-dsv`)[https://github.com/d3/d3-dsv] has many methods for converting between Javascript objects and **dsv** format. It also has some command-line utilities for converting between JSON, dsv, and dsv with different delimiters.
+[`d3-dsv`](https://github.com/d3/d3-dsv) has many methods for converting between Javascript objects and **dsv** format. It also has some command-line utilities for converting between JSON, dsv, and dsv with different delimiters.
 
 
 ### Selection
@@ -179,5 +179,5 @@ The `.on()` method can bind an event listener on the elements in the selection.
 
 
 ### Resource
-Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
+Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3) <br/>
 Amelia Wattenberger -- [Blog: Learn Data Viz](https://wattenberger.com/blog/d3#grabbing-data)
