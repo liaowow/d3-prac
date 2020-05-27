@@ -59,6 +59,7 @@ listSelection.data(climate_daly_data)
 
 // practice d3-fetch
 const url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/862592/"
+
 d3.json(url)
 .then(res => {
     alert(`Current temperature: ${

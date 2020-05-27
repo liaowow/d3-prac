@@ -36,6 +36,33 @@ One of the nice things about the d3 API is that it's very modular. This allows u
 [`d3-dsv`](https://github.com/d3/d3-dsv) has many methods for converting between Javascript objects and **dsv** format. It also has some command-line utilities for converting between JSON, dsv, and dsv with different delimiters.
 
 
+### Manipulating Data
+
+#### d3-array
+
+There are 11 methods in `d3-array` that help answer basic questions about a dataset. 
+
+The methods that probably get the most use are the ones that will find the highest and lowest value (`d3.max()` / `d3.min()`), and the method that returns the extremes (`d3.extent()`). These come in handy when creating a **scale**.
+
+To use any of these methods, we want to call it with two parameters:
+1. our dataset -- needs to be an array containing the values we're interested in
+2. accessor function (optional) -- tells d3 how to find a value within one data point. This defaults to an identity function (`d => d`), which means this parameter is unnecessary if our dataset is an array of values.
+```js
+const dataset = [{
+    date: "2019-10-10",
+    temp: 10,
+},{
+    date: "2019-10-11",
+    temp: 12,
+}]
+
+const mean = d3.mean(dataset, d => d.temp)
+alert(mean)
+```
+
+
+
+
 ### Selection
 
 For D3 to inject or bind data to elements, a D3 selection of elements needs to be created. 
