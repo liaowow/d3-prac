@@ -90,3 +90,49 @@ Our browsers have a built-in `Math.random()` function, which is good for simple 
 `d3-random` lets you create random numbers with specific distributions. 
 
 For example, the normal distribution (`d3.randomNormal()`) is helpful for generating numbers that are normally distributed around a specific value.
+
+
+### Manipulating the DOM
+
+#### d3-selection
+
+d3-selection has an alternative method to `document.querySelector()` called `d3.select()`.
+
+This method creates a **d3 selection object** that has many helper methods.
+
+The d3-selection update pattern is a common gotcha when learning d3. It’s important that you understand it well before using it, so read up on the basic pattern on [this guide by Mike Bostock](https://observablehq.com/@d3/selection-join).
+
+D3 selection objects have other methods; here's a few additional things they can help with:
+- `.on()` & `.dispatch()` -- listening to (and dispatching) mouse & touch events. D3 also provides `d3.mouse()` and `d3.touch()` methods that return the cursor position
+- `.attr()` & `.style()` & `.property()` -- updating elements’ attributes and styles
+- `.text()` & `.html()` -- modifying text
+- `.sort()` & `.order()` & `.raise()` & `.lower()` -- re-ordering elements
+- `.transition()` -- adding transitions and animations
+
+#### d3-selection-multi
+
+d3 selection objects have `.style()` and `.attr()` methods to update the styles or attributes of DOM elements. But we can only *update one value per call*.
+
+d3-selection-multi adds `.styles()` and `.attrs()` methods to our d3 selection objects that will take an object of updates.
+
+
+For example, this code:
+```js
+d3.select("#this-last-paragraph")
+  .style("color", "cornflowerblue")
+  .style("font-style", "italic")
+  .style("font-weight", "bold")
+```
+can be written like so:
+```js
+d3.select("#this-last-paragraph")
+  .styles({
+      "color":       "cornflowerblue",
+    "font-style":  "italic",
+    "font-weight": "bold",
+  })
+```
+
+As you can see, this module mostly helps with code organization -- you might even prefer the original format!
+
+- Note that this is an external module and is not included in the core d3.js bundle. If you want to use it, you’ll need to [roll your own d3.js bundle](https://bl.ocks.org/mbostock/bb09af4c39c79cffcde4) or [import it into your site individually](https://github.com/d3/d3-selection-multi#installing).

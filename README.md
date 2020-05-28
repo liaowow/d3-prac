@@ -152,5 +152,5 @@ The `.on()` method can bind an event listener on the elements in the selection.
 
 
 ### Resource
-Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3) <br/>
-Amelia Wattenberger -- [Blog: Learn Data Viz](https://wattenberger.com/blog/d3#grabbing-data)
+- Codecademy -- [Learn D3](https://www.codecademy.com/learn/learn-d3)
+- Amelia Wattenberger -- [Blog: Learn Data Viz](https://wattenberger.com/blog/d3#grabbing-data)
