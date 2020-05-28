@@ -60,7 +60,37 @@ const mean = d3.mean(dataset, d => d.temp)
 alert(mean)
 ```
 
+##### Ordering
 
+`d3-array` can also help with finding specific items in an array in two main ways:
+1. Find the item with the smallest value -- `d3.least()` will return the item and `d3.leastIndex()` will return the item's index.
+2. Find the item *nearest to* a specific value -- `d3.bisect()` will take a sorted array and a value and return the index at which the value would fit.
+```js
+const array = [10, 20, 30, 40, 50, 60]
+const nearestValueIndex = d3.bisect(array, 12)
+alert(nearestValueIndex) // is 1
+// compiled array: [10, 12, 20, 30...]
+```
+
+There are a few similar bisect functions for things like using an accessor or comparator function (`d3.bisector()`) or specifying whether you want the index to be lower than (`d3.bisectLeft()`) or higher than (`d3.bisectRight()`) existing matching values.
+
+These bisector functions are very handy when creating tooltips - finding the closest point to the user's cursor is a great way to make a chart easy to interact with.
+
+There are also two handy comparator functions that you can use: `d3.ascending()` and `d3.descending()`.
+
+##### Transformation
+
+There are a handful of `d3-array` functions that would look at home in a utility library like Lodash. These allow you to do things like:
+- Group a list of objects by a specific key: `d3.group()` returned the grouped objects and `d3.rollup()` returned the grouped indices
+- Create a list of permutations of two arrays: `d3.cross()`
+- Create a new array by pulling items at specific indices or keys: `d3.permute()`
+- Shuffle the items of array: `d3.shuffle()`
+- Create an array counting between two numbers: `d3.range()`
+- Zip two arrays: `d3.zip()`
+
+##### Binning
+
+There is also [a group of d3-array methods](https://github.com/d3/d3-array#bins) that will chunk a dataset into bins. This is really helpful for creating bucketed charts like histograms.
 
 
 ### Selection
