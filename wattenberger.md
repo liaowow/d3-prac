@@ -3,6 +3,7 @@
 - [Manipulating Data](#manipulating-data)
 - [Manipulating the DOM](#manipulating-dom)
 - [Drawing SVG Shapes](#drawing-svg)
+- [Converting Data to the Physical Domain](#converting-data)
 
 ### <a name="grabbing-data"></a>Grabbing Data
 
@@ -215,4 +216,73 @@ You can also create your own symbols, although the SVG `<use>` element could be 
 `d3.stack()` won't draw any shapes directly, but can help compute positions for stacked elements, which can help with things like stacked bar charts and streamgraphs.
 
 #### d3-path
+
+`d3-path` is used to create the shapes in `d3-shape`, but can be used to create your own custom paths.
+
+To create a complex shape in SVG, you need to construct a `d` attribute string for a `<path>` element.
+```html
+<path d="M 2 3 L 4 5 L 1 4 Z" />
+```
+
+### <a name="converting-data"></a>Coverting Data to Physical Domain
+
+A **scale** is an essential concept when visualizing data. To physicalize a dataset, you must turn each metric into a **visual feature**.
+
+**d3 scales** are a one of the most important concepts for visualizing data with d3 - make sure to familiarize yourself with them so you can convert between any data domain and the output range with ease.
+
+`d3 scales` have many useful methods, here are a few:
+- `.ticks()` -- returns an array of equally-spaced values in the output range. It defaults to 10 values, but you can pass a different count for it to aim for.
+```js
+const xScale = d3.scaleLinear()
+  .domain([0, 1]) // possible chanceOfPrecipitation values
+  .range([0, 500]) // possible x values
+
+const ticks = xScale.ticks()
+alert(ticks)
+```
+
+- `.nice()` -- extends the data domain so that it starts and ends on round values. This can make your chart friendlier to readers, since 250 is an easier number to process than 249.5.
+
+- `.clamp()` -- ensures that the scale will return a value within the range, even if the input is outside of the domain. For example, our xScale will, by default, return 1000 for an input of 2.
+```js
+const xScale = d3.scaleLinear()
+  .domain([0, 1]) // possible chanceOfPrecipitation values
+  .range([0, 500]) // possible x values
+
+const output = xScale(2)
+alert(output)
+```
+
+- `.invert()` -- converts a value *backwards*, from the output range to the data domain. This comes in handy for things like surfacing a **tooltip** where a user’s mouse is hovering.
+```js
+const xScale = d3.scaleLinear()
+  .domain([0, 1]) // possible chanceOfPrecipitation values
+  .range([0, 500]) // possible x values
+
+const chanceOfPrecipitationAt250 = xScale.invert(250)
+alert(chanceOfPrecipitationAt250)
+```
+
+- `.domain()` and `.range()` -- if we created our scale programatically, we can query what its domain and range are.
+```js
+const xScale = d3.scaleLinear()
+  .domain([0, 1]) // possible chanceOfPrecipitation values
+  .range([0, 500]) // possible x values
+
+const range = xScale.range()
+const domain = xScale.domain()
+alert(`range: ${range}, \ndomain: ${domain}`)
+```
+
+- `.interpolate()` -- something that might not be immediately obvious is that we can create a scale that converts a value into a **color**. We can use `.interpolate()` to specity the **color space** that we want our scale to function within:
+```js
+const xScale = d3.scaleLinear()
+  .domain([0, 1]) // possible chanceOfPrecipitation values
+  .range(["white", "green"]) // possible colors
+
+const halfwayPointRgb = xScale(0.5)
+xScale.interpolate(d3.interpolateHcl)
+const halfwayPointHcl = xScale(0.5)
+alert(`rgb: ${halfwayPointRgb}, \nhcl: ${halfwayPointHcl}`)
+```
 

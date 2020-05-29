@@ -1,0 +1,26 @@
+[
+    {
+      "date": "2020-05-26",
+      "conditions": "cloudy",
+      "chanceOfPrecipitation": 0.5,
+      "humidity": 0.5
+    },
+    {
+      "date": "2020-05-27",
+      "conditions": "stormy",
+      "chanceOfPrecipitation": 0.5,
+      "humidity": 0.5
+    },
+    {
+      "date": "2020-05-28",
+      "conditions": "balmy",
+      "chanceOfPrecipitation": 0.7,
+      "humidity": 0.7
+    },
+    {
+      "date": "2020-05-29",
+      "conditions": "stormy",
+      "chanceOfPrecipitation": 0.6,
+      "humidity": 0.7
+    }
+  ]
