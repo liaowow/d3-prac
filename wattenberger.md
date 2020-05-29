@@ -1,6 +1,8 @@
 ## Table of Contents
 - [Grabbing Data](#grabbing-data)
 - [Manipulating Data](#manipulating-data)
+- [Manipulating the DOM](#manipulating-dom)
+- [Drawing SVG Shapes](#drawing-svg)
 
 ### <a name="grabbing-data"></a>Grabbing Data
 
@@ -96,7 +98,7 @@ Our browsers have a built-in `Math.random()` function, which is good for simple 
 For example, the normal distribution (`d3.randomNormal()`) is helpful for generating numbers that are normally distributed around a specific value.
 
 
-### Manipulating the DOM
+### <a name="manipulating-dom"></a>Manipulating the DOM
 
 #### d3-selection
 
@@ -140,3 +142,77 @@ d3.select("#this-last-paragraph")
 As you can see, this module mostly helps with code organization -- you might even prefer the original format!
 
 - Note that this is an external module and is not included in the core d3.js bundle. If you want to use it, you’ll need to [roll your own d3.js bundle](https://bl.ocks.org/mbostock/bb09af4c39c79cffcde4) or [import it into your site individually](https://github.com/d3/d3-selection-multi#installing).
+
+### <a name="drawing-svg"></a>Drawing SVG Shapes
+
+#### Canvas
+
+There is an HTML <canvas> element that we can draw on to create raster images. Doing this involves using native Javascript methods, such as `fillRect()`.
+
+Canvas can be tedious to work with because of its imperative nature, and any shapes we draw are collapsed into one DOM element. It can be way more performant, however, when you’re trying to render many elements, since each element doesn't have the overhead of a DOM element.
+
+#### WebGL
+
+Everything I just said about Canvas applies even more so to WebGL. WebGL is an **API** to draw on `<canvas>` elements using low-level shader code, and it’s really fast since it is processed by your computer’s GPU.
+
+#### SVG
+
+`SVG` is the main method used for data visualization in the browser. Within an `<svg>` element, we can use SVG elements the same way we use HTML elements.
+
+We can even use CSS properties to style our SVG elements, although they play by different rules.
+
+#### d3-shape
+
+While things like circles and rectangles are easy to draw, we’ll often want to draw more complex shapes to visualize our data. `d3-shape` can help us create those shapes in SVG and Canvas.
+
+##### Arcs
+
+While a circle may be easy to draw in both SVG and Canvas, a segment of a circle is not. `d3.arc()` makes it easy to create an arc with a specific start and end angle, plus some other optional parameters.
+```js
+const arcGenerator = d3.arc()
+  .innerRadius(25)
+  .outerRadius(40)
+  .startAngle(0)
+  .endAngle(5.5)
+  .padAngle(0)
+  .cornerRadius(20)
+const arcPath = arcPathGenerator()
+```
+```html
+<svg width="100" height="100">
+  <path
+    fill="cornflowerblue"
+    d={arcPath}
+    style="transform: translate(50%, 50%)"
+  />
+</svg>
+```
+- Calling an `d3.arc()` will create a string for the `d` attribute of an SVG `<path>` element. We can alternatively use an arc’s `.context()` method to draw it on Canvas.
+- `d3.pie()` can help us calculate the angles for a pie or donut chart, which can be passed to `d3.arc()`.
+
+##### Lines
+
+Often we'll want to draw a line that changes x- or y-position based on a metric in our dataset, like in a timeline. `d3.line()` can help us draw such a line, and `d3.area()` can help us draw a filled area.
+
+##### Curves
+
+Typically, lines created with d3 will connect each data point with straight lines. You might want to smooth the line a bit, to help the viewer focus on the overall shape instead of local noise.
+
+To help out, you can pass one of [d3's interpolation functions](https://github.com/d3/d3-shape#curves) to your `d3.line()`'s' (or area, etc) `.curve()` method.
+
+##### Links
+
+If you need to create a smooth curve connecting two points, `d3-shape` has functions for [vertical](https://github.com/d3/d3-shape#lineVertical), [horizontal](https://github.com/d3/d3-shape#lineHorizontal), and [radial](https://github.com/d3/d3-shape#lineRadial) links.
+
+##### Symbols
+
+d3 has methods for drawing several common basic symbols. Each of these symbols is centered around the middle point ⬤, making them easy to position for charts like scatter plots.
+
+You can also create your own symbols, although the SVG `<use>` element could be a more performant alternative.
+
+##### Stacks
+
+`d3.stack()` won't draw any shapes directly, but can help compute positions for stacked elements, which can help with things like stacked bar charts and streamgraphs.
+
+#### d3-path
+

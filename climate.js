@@ -58,14 +58,25 @@ listSelection.data(climate_daly_data)
              })
 
 // practice d3-fetch
-const url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/862592/"
+// const url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/862592/"
 
-d3.json(url)
-.then(res => {
-    alert(`Current temperature: ${
-    res.consolidated_weather[0].the_temp
-    }°C`)
-})
-.catch(() => {
-    alert("Oh no, something horrible happened!")
-})
+// d3.json(url)
+// .then(res => {
+//     alert(`Current temperature: ${
+//     res.consolidated_weather[0].the_temp
+//     }°C`)
+// })
+// .catch(() => {
+//     alert("Oh no, something horrible happened!")
+// })
+
+// practice drawing an arc
+const arcGenerator = d3.arc()
+    .innerRadius(25)
+    .outerRadius(40)
+    .startAngle(0)
+    .endAngle(5.5)
+    .padAngle(0)
+    .cornerRadius(20)
+
+// const arcPath = arcGenerator()

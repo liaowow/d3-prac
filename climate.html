@@ -11,7 +11,61 @@
   <body>
     <h3>Climate change attributable deaths:</h3>
     <div id="viz"></div>   
-    <ol id="legend"></ol>     
+    <ol id="legend"></ol>
+
+    <!-- make a simple progress bar by dynamically setting an element’s width -->
+    <div style="
+    position: relative;
+    width: 100%;
+    border: 1px solid lightgrey;
+    background: white;
+    ">
+      <div style="
+          width: 65%;
+          background: cornflowerblue;
+          height: 1em;
+      ">
+      </div>
+    </div>  
+    
+    <!-- draw a heatmap using CSS Grid -->
+    <div style="
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1em);
+    grid-template-rows: repeat(3, 1em);
+    grid-gap: 3px;
+    ">
+      <div style="width: 100%; background: #deebf7;"></div>
+      <div style="width: 100%; background: #9ecae1;"></div>
+      <div style="width: 100%; background: #4292c6;"></div>
+      <div style="width: 100%; background: #2171b5;"></div>
+      <div style="width: 100%; background: #deebf7;"></div>
+      <div style="width: 100%; background: #c6dbef;"></div>
+      <div style="width: 100%; background: #6baed6;"></div>
+      <div style="width: 100%; background: #4292c6;"></div>
+      <div style="width: 100%; background: #4292c6;"></div>
+      <div style="width: 100%; background: #6baed6;"></div>
+      <div style="width: 100%; background: #f7fbff;"></div>
+      <div style="width: 100%; background: #4292c6;"></div>
+      <div style="width: 100%; background: #deebf7;"></div>
+      <div style="width: 100%; background: #4292c6;"></div>
+      <div style="width: 100%; background: #4292c6;"></div>
+      <div style="width: 100%; background: #2171b5;"></div>
+      <div style="width: 100%; background: #deebf7;"></div>
+      <div style="width: 100%; background: #c6dbef;"></div>
+    </div>
+
+    <!-- drawing an arc -->
+    <svg width="100" height="100">
+      <path
+        fill="cornflowerblue"
+        d="M 2.66454e-15 -31.4325 A 6 6 0 0 1 7.125 -37.3261 A 38 38 0 1 1 -37.814 -3.75565 A 6 6 0 0 1 -30.1414 -8.9162 L -30.1414 -8.9162 A 6 6 0 0 1 -25.8727 -2.56966 A 26 26 0 1 0 4.875 -25.5389 A 6 6 0 0 1 2.66454e-15 -31.4325 Z"
+        style="transform: translate(50%, 50%)" 
+      />
+    </svg>
+
   </body>
   
 </html>
