@@ -454,3 +454,22 @@ Note that we can use `d3.stop()` to stop our timer after a certain amount of tim
 We can also execute a callback once, after a certain amount of time using `d3.timeout()`, and on an interval using `d3.interval()`.
 
 While there are native javascript methods for creating intervals, timeouts, and timers, `d3-timer` has some performance enhancements (using [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)) and won't run when the user's tab isn't open.
+
+### Maps and Globes
+
+#### d3-geo
+
+Because our goal is to represent a 3d sphere (Earth) onto a 2d plane (a computer screen), we’re going to have to decide on a set of rules for how to handle the transformation. This set of rules is called a **projection**.
+
+Part of the reason that `d3-geo` is so large (it’s the largest module in the core build) is because it contains 15 projections.
+
+There are even two d3 modules that aren’t in the core build that provide extra projections:
+- [d3-geo-projection](https://github.com/d3/d3-geo-projection) -- the largest d3 module, adding 100 projections
+- [d3-geo-polygon](https://github.com/d3/d3-geo-polygon) -- a d3 module that handles spherical polygons, adding 8 projections.
+
+When creating a map with `d3-geo`, you’ll want to be familiar with two concepts:
+1. importing the geographic shapes
+2. projecting those shapes onto the world
+
+d3-geo has a `d3.geoPath()` method that will take a d3 projection and create a path generator. We can then take our path generator and use it to transform our geographic shapes into a <path>’s d attribute string.
+
