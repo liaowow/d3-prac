@@ -82,9 +82,9 @@ const arcGenerator = d3.arc()
 // const arcPath = arcGenerator()
 
 // practice d3-scale
-const xScale = d3.scaleLinear()
-  .domain([0, 1]) // possible chanceOfPrecipitation values
-  .range([0, 500]) // possible x values
+// const xScale = d3.scaleLinear()
+//   .domain([0, 1]) // possible chanceOfPrecipitation values
+//   .range([0, 500]) // possible x values
 
-const pixelsToTheRight = xScale(0.5)
-alert(pixelsToTheRight)
+// const pixelsToTheRight = xScale(0.5)
+// alert(pixelsToTheRight)

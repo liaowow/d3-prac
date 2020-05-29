@@ -5,6 +5,7 @@
 - [Drawing SVG Shapes](#drawing-svg)
 - [Converting Data to the Physical Domain](#converting-data)
 - [Dealing with Colors](#colors)
+- [Dealing with Colors](#datetime)
 
 ### <a name="grabbing-data"></a>Grabbing Data
 
@@ -311,3 +312,51 @@ There are two extra special values:
 #### d3-interpolate
 
 If you want to create your own custom color scale, you can use an ordinal or sequential scale and use [`d3-interpolate`’s color methods](https://github.com/d3/d3-interpolate#color-spaces) to specify a color space to transition within.
+
+
+### <a name="datetime"></a>Dealing with Datetimes
+
+#### d3-time-format
+
+Javascript has a native `Date` object that represent a point in time down to the millisecond. We can turn a string into a Date by using `d3.timeParse()`.
+
+`d3.timeParse()` takes one parameter: a specifier string that represents to format of your datetime. This string will be made up of individual specifiers: a combination of a % and a letter.
+
+For example, if we wanted to parse the date string `Friday, May 29, 2020`, we could use the following code:
+```js
+const dateString = "Friday, May 29, 2020"
+const today = d3.timeParse("%A, %B %d, %Y")(dateString)
+// <Date> Fri May 29 2020 00:00:00 GMT-0400 (Eastern Daylight Time)
+```
+
+To create a linear scale for datetimes in our dataset, we would pass these parsed Dates to `d3.timeScale()`.
+
+We can pass the same specifiers with `d3.timeFormat()` to convert a Date object back into a string, which comes in handy for labels and axes:
+```js
+const today = new Date()
+const today = d3.timeFormat("%A, %B %d, %Y")(today)
+```
+
+If a specifier is zero-padded, adding a `-` will remove any beginning zeroes:
+```js
+const today = new Date()
+const today = d3.timeFormat("%A, %B %-d, %Y")(today)
+```
+
+#### d3-time
+
+But what if we need to modify datetimes?
+
+`d3-time` has your back with a built-in set of intervals: `timeMillisecond`, `timeSecond`, `timeMinute`, `timeHour`, `timeDay`, `timeWeek`, `timeMonth`, and `timeYear`.
+
+Each of these intervals has a handful of methods:
+- `.floor()`, `.ceil()`, and `.round()` for creating a **Date** at the start, end, or closest boundary of the interval
+- `.offset()` to offset the **Date** by a specified number of intervals
+- `.range()` to create an array of **Date**s, one for each interval between a specified start and stop **Date**
+- `.count()` to return the number of intervals that can fit between two specified **Date**s
+
+For example, if I wanted to create a date time that was exactly one week after today, I could use `d3.timeWeek()`:
+```js
+d3.timeWeek.offset(new Date(), 1)
+// <Date> Fri Jun 05 2020 15:30:21 GMT-0400 (Eastern Daylight Time)
+```
