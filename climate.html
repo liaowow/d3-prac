@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="climate.css">
-	<script src="https://d3js.org/d3.v5.min.js"></script>
+	  <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="climate.js" defer></script>
   </head>
 
@@ -27,6 +27,8 @@
       ">
       </div>
     </div>  
+
+    <p>It's been <span id="elapsed">-</span> milliseconds since you loaded this page.</p>
     
     <!-- draw a heatmap using CSS Grid -->
     <div style="
@@ -58,13 +60,17 @@
     </div>
 
     <!-- drawing an arc -->
-    <svg width="100" height="100">
+    <svg width="800" height="100">
       <path
         fill="cornflowerblue"
         d="M 2.66454e-15 -31.4325 A 6 6 0 0 1 7.125 -37.3261 A 38 38 0 1 1 -37.814 -3.75565 A 6 6 0 0 1 -30.1414 -8.9162 L -30.1414 -8.9162 A 6 6 0 0 1 -25.8727 -2.56966 A 26 26 0 1 0 4.875 -25.5389 A 6 6 0 0 1 2.66454e-15 -31.4325 Z"
         style="transform: translate(50%, 50%)" 
       />
+      <!-- circle animation -->
+      <circle id="circle" cx="50" cy="50" r="40" fill="cornflowerblue"></circle>
     </svg>
+
+
 
   </body>
   

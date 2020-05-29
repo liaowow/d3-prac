@@ -88,3 +88,28 @@ const arcGenerator = d3.arc()
 
 // const pixelsToTheRight = xScale(0.5)
 // alert(pixelsToTheRight)
+
+// practice animation
+d3.select("#circle")
+    // .attr("cx", 50)
+  .transition()
+    .delay(500)
+    .duration(2000)
+    .ease(d3.easeBounce)
+    .attr("cx", 500)
+  .transition()
+    .duration(1000)
+    .ease(d3.easeElasticInOut)
+    .style("fill", "lavender")
+  .transition()
+    .duration(1000)
+    .ease(d3.easeBounceOut)
+    .attr("cx", 50)
+    .style("fill", "cornflowerblue")  
+
+// practice d3-timer
+const timer = d3.timer(elapsed => {
+    d3.select("#elapsed")
+      .html(Math.round(elapsed))
+    if (elapsed > 10000) timer.stop()
+})

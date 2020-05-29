@@ -5,7 +5,8 @@
 - [Drawing SVG Shapes](#drawing-svg)
 - [Converting Data to the Physical Domain](#converting-data)
 - [Dealing with Colors](#colors)
-- [Dealing with Colors](#datetime)
+- [Dealing with Datetime](#datetime)
+- [Animation](#animation)
 
 ### <a name="grabbing-data"></a>Grabbing Data
 
@@ -360,3 +361,96 @@ For example, if I wanted to create a date time that was exactly one week after t
 d3.timeWeek.offset(new Date(), 1)
 // <Date> Fri Jun 05 2020 15:30:21 GMT-0400 (Eastern Daylight Time)
 ```
+
+### <a name="animation"></a> Animation
+
+#### d3-interpolate
+
+To animate a property from point A to point B, we need to create a series of states, smoothly interpolating between them. 
+
+To create these in-between steps, we can use `d3.interpolate()`, which takes two parameters: point A and point B.
+
+`d3.interpolate()` uses different methods (which are also surfaced), depending on the type of value of point B. For example, if point B is a number, it will use `d3.interpolateNumber()` and if point B is a date, it will use `d3.interpolateDate()`.
+```js
+const interpolator = d3.interpolate(0, 100)
+interpolator(0  ) // 0
+interpolator(0.5) // 50
+interpolator(1  ) // 100
+```
+
+If we wanted to list out a number of steps, we could pass our interpolator to `d3.quantize()`, along with the number of steps that we wanted:
+```js
+const interpolator = d3.interpolate(0, 100)
+const steps = d3.quantize(interpolator, 11)
+// steps = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+```
+
+#### d3-transition
+
+We can create a **d3 transition** in two ways:
+- on the document's **root element** using `d3.transition()`, or
+- on a **d3 selection** using a **d3 selection**'s `.transition()` method
+
+If we create the transition on a d3 selection, we can use the transition's `.attr()` (to change a HTML attribute) or `.style()` method (to change a CSS style) to animate a value.
+
+For example, we can animate a <circle>'s position like so:
+```js
+d3.select("#circle")
+    .attr("cx", 50)
+  .transition()
+    .attr("cx", 500)
+```
+
+We can tweak the timing of our <circle>'s transition using its `.delay()` and `.duration()` methods:
+```js
+d3.select("#circle2")
+    .attr("cx", 50)
+  .transition()
+    .delay(500)
+    .duration(2000)
+    .attr("cx", 500)
+```
+
+#### d3-ease
+
+Our transitions don't have to interpolate linearly from point A to point B. d3-ease is an entire d3 module that suppies different easing functions, which can be used to give your animations more personality.
+
+To use these easing functions, we can pass them to our transition's `.ease()` method.
+```js
+d3.select("#circle5")
+    .attr("cx", 50)
+    .style("fill", "cornflowerblue")
+  .transition()
+    .delay(500)
+    .duration(2000)
+    .ease(d3.easeBounce)
+    .attr("cx", 500)
+  .transition()
+    .duration(1000)
+    .ease(d3.easeElasticInOut)
+    .style("fill", "lavender")
+  .transition()
+    .duration(1000)
+    .ease(d3.easeBounceOut)
+    .attr("cx", 50)
+    .style("fill", "cornflowerblue")
+```
+
+#### d3-timer
+
+Now we know how to create animated transitions between two states, but how do we create a constantly running animation?
+
+`d3.timer()` will call a callback function continuously, passing it the milliseconds that have elapsed since initialization.
+```js
+const timer = d3.timer(elapsed => {
+  d3.select("#elapsed")
+    .html(Math.round(elapsed))
+  if (elapsed > 10000) timer.stop()
+})
+```
+
+Note that we can use `d3.stop()` to stop our timer after a certain amount of time.
+
+We can also execute a callback once, after a certain amount of time using `d3.timeout()`, and on an interval using `d3.interval()`.
+
+While there are native javascript methods for creating intervals, timeouts, and timers, `d3-timer` has some performance enhancements (using [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)) and won't run when the user's tab isn't open.
