@@ -4,6 +4,7 @@
 - [Manipulating the DOM](#manipulating-dom)
 - [Drawing SVG Shapes](#drawing-svg)
 - [Converting Data to the Physical Domain](#converting-data)
+- [Dealing with Colors](#colors)
 
 ### <a name="grabbing-data"></a>Grabbing Data
 
@@ -286,3 +287,27 @@ const halfwayPointHcl = xScale(0.5)
 alert(`rgb: ${halfwayPointRgb}, \nhcl: ${halfwayPointHcl}`)
 ```
 
+### <a name="colors"></a>Dealing with Colors
+
+Here to save the day is **d3-color**! To start, pass any valid CSS color string to `d3.color()`. Valid inputs include:
+- [color keywords](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#Color_keywords) -- there are currently 148 CSS color keywords, including `cornflowerblue`, `lavender`, and `turquoise`.
+
+There are two extra special values:
+1. **transparent**, which specifies no color, and
+2. **currentColor**, which inherits the CSS color property. 
+
+`d3.color()` will create a d3 color in the **RGB** color space, the same as `d3.rgb()`.
+
+#### d3-scale-chromatic
+
+**d3-scale-chromatic**’s many schemes and scales can be categorized into four different use cases:
+1. CATEGORICAL -- [Categorical color scales](https://github.com/d3/d3-scale-chromatic#categorical) are good for representing **nominal** variables, where values are bucketed in a non-ordered manner.
+2. 
+- SEQUENTIAL (SINGLE HUE) -- [Sequential color scales with a single hue](https://github.com/d3/d3-scale-chromatic#sequential-single-hue) are good for representing **ordinal**, **discrete**, and **continuous** metrics, where values lie on a scale between two extremes. For example: chance of precipitation.
+- SEQUENTIAL (MULTI-HUE) -- [Sequential color scales with multiple hues](https://github.com/d3/d3-scale-chromatic#sequential-multi-hue) can increase the visual space of a sequential color scale, making different values easier for the human eye to differentiate.
+3. DIVERGING -- [Diverging color scales](https://github.com/d3/d3-scale-chromatic#diverging) are good highlighting the extreme ends of the data domain. For example: hot and cold temperatures, or positive and negative numbers.
+4. CYCLICAL -- [Cyclical color scales](https://github.com/d3/d3-scale-chromatic#cyclical) are good for representing metrics whose values loop. For example: days in a year.
+
+#### d3-interpolate
+
+If you want to create your own custom color scale, you can use an ordinal or sequential scale and use [`d3-interpolate`’s color methods](https://github.com/d3/d3-interpolate#color-spaces) to specify a color space to transition within.
