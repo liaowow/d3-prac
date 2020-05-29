@@ -1,4 +1,8 @@
-### Grabbing Data
+## Table of Contents
+- [Grabbing Data](#grabbing-data)
+- [Manipulating Data](#manipulating-data)
+
+### <a name="grabbing-data"></a>Grabbing Data
 
 [`d3-fetch`](https://github.com/d3/d3-fetch) provides some utility methods that will fetch data from a file and parse it into a Javascript object.
 
@@ -26,7 +30,7 @@ One of the nice things about the d3 API is that it's very modular. This allows u
 [`d3-dsv`](https://github.com/d3/d3-dsv) has many methods for converting between Javascript objects and **dsv** format. It also has some command-line utilities for converting between JSON, dsv, and dsv with different delimiters.
 
 
-### Manipulating Data
+### <a name="manipulating-data"></a>Manipulating Data
 
 #### d3-array
 
