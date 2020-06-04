@@ -79,7 +79,7 @@ const arcGenerator = d3.arc()
     .padAngle(0)
     .cornerRadius(20)
 
-// const arcPath = arcGenerator()
+const arcPath = arcGenerator()
 
 // practice d3-scale
 // const xScale = d3.scaleLinear()

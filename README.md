@@ -8,6 +8,31 @@ Key Features:
 - d3 leaves a lot of room for creative customization because the elements the data are bound to can be styled like any regular DOM element
 - d3 supports interactivity triggered by browser events
 
+### Dataviz Concepts
+
+3 common dataset types:
+- Tables
+- Networks
+- Spatial
+
+Attribute types (broad taxonomy for visualization design)
+- Categorical
+- Ordered
+-- Ordinal
+-- Quantitative
+
+Special Cases
+- Time: point of time / region of time
+- Space: point of space / region of space
+
+Tasks
+- What questions do you want to answer?
+- What is the problem you're trying to solve?
+- What decisions are you trying to make?
+- What outcomes are you hoping for?
+- What story do you want to tell?
+- What tasks should the viewer be able to perform?
+
 
 ### Selection
 
