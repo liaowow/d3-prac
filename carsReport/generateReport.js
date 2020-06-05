@@ -1,6 +1,6 @@
-// import { formatCar } from '/formatCar'
+import { formatCar } from '/formatCar'
 
-formatCar = require('formatCar')
+// formatCar = require('formatCar')
 
 export const generateReport = (cars, maxPrice) => 
   cars
