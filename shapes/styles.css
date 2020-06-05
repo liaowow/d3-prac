@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+    font-size: 3em;
+    font-family: monospace;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.lines {
+stroke: hotpink;
+stroke-width: 10;
+}
+
+.lines path {
+    stroke: steelblue;
+    stroke-linejoin: round;
+}

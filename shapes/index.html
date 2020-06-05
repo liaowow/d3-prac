@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shapes with SVG and CSS</title>
+    <link rel="stylesheet" href="styles.css"> 
+  </head>
+  <body>
+    <svg width="960" height="500">
+      <g transform="scale(1.2)">
+        <circle cx="400" cy="70" r="50" fill="teal"></circle>
+        <rect width="50" height="50" x="500" y="50" fill="cornflowerblue"></rect>
+        <g transform="translate(-20, -100)" stroke="lime" stroke-width="5">
+          <circle cx="400" cy="300" r="50" fill="maroon"></circle>
+          <rect width="50" height="50" x="500" y="270" fill="hotpink"></rect>
+        </g>
+        <g class="lines" transform="translate(-100, -10)">
+        <line x1="200" y1="300" x2="400" y2="300"></line>
+        <path d="M395 300 L450 400 L450 350" fill="none"></path>
+        </g>
+      </g>
+    </svg>
+  </body>
+</html>
