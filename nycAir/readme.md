@@ -1,0 +1,1 @@
+This chart shows the air quality (PM2.5 level, the lower the healthier) in midtown Manhattan around the time of COVID-19 outbreak, according to the [New York City government website](http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/covidair/).
