@@ -8,4 +8,9 @@ body {
 
 text {
     font-size: 1.3em;
+    font-family: monospace;
+}
+
+.tick line {
+    stroke: lightsteelblue;
 }
