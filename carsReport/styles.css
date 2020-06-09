@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+    font-size: 2em;
+    font-family: monospace;
+    margin: 0px;
+    overflow: hidden;
+}
+
+text {
+    font-size: 1.75em;
+}
+
+.tick line {
+    stroke: lightgrey
+}
