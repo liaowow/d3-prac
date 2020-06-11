@@ -8,9 +8,16 @@ body {
 
 text {
     font-size: 1.3em;
-    font-family: monospace;
+    color: white;
 }
 
 .tick line {
     stroke: lightsteelblue;
+}
+
+.line-path {
+    fill: none;
+    stroke: lavender;
+    stroke-width: 5;
+    stroke-linejoin: round;
 }
