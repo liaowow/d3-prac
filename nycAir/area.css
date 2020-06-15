@@ -1,0 +1,21 @@
+body {
+    text-align: center;
+    font-size: 2em;
+    font-family: monospace;
+    margin: 0px;
+    overflow: hidden;
+}
+
+text {
+    font-size: 1.3em;
+    color: white;
+}
+
+.tick line {
+    stroke: lightsteelblue;
+}
+
+.line-path {
+    fill: lavender;
+    opacity: 0.7;
+}
