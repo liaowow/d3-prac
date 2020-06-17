@@ -11,28 +11,36 @@ const colorScale = d3.scaleOrdinal()
 const radiusScale = d3.scaleOrdinal()
         .domain(['apple', 'lemon'])
         .range([50, 30])
+const xPosition = (d, i) => i * 150 + 180
 
 // rendering logic
 const render = (selection, { fruits }) => {
-    const circles = selection.selectAll('circle').data(fruits)
+    const circles = selection.selectAll('circle').data(fruits, d => d.id)
 
     circles
     .enter().append('circle')
-        .attr('cx', (d, i) => i * 150 + 180)
+        .attr('cx', xPosition)
         .attr('cy', height / 2)
         .attr('r', d => radiusScale(d.type))
         .attr('fill', d => colorScale(d.type))
+    .merge(circles)
+        .transition().duration(1000)
+            .attr('cx', xPosition)
+            .attr('r', d => radiusScale(d.type))
+            .attr('fill', d => colorScale(d.type))
     circles
-        .attr('r', d => radiusScale(d.type))
-        .attr('fill', d => colorScale(d.type))
-    circles
-    .exit().remove()
+    .exit()
+    .transition().duration(1000)
+        .attr('r', 0)
+    .remove()
 }
 
 // state manipulation logic
-const makeFruit = type => ({ type })
-const fruits = d3.range(5)
-        .map(() => makeFruit('apple'))
+const makeFruit = type => ({ 
+    type,
+    id: Math.random()
+})
+let fruits = d3.range(5).map(() => makeFruit('apple'))
 
 render(svg, { fruits })
 
@@ -47,3 +55,9 @@ setTimeout(() => {
     fruits[2].type = 'lemon'
     render(svg, { fruits })
 }, 2000)
+
+/* eating another apple on 2nd index! */
+setTimeout(() => {
+    fruits = fruits.filter((d, i) => i !== 1)
+    render(svg, { fruits })
+  }, 3000)
