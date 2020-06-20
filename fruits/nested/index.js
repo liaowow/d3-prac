@@ -15,7 +15,15 @@ const xPosition = (d, i) => i * 150 + 180
 
 // rendering logic
 const render = (selection, { fruits }) => {
-    const circles = selection.selectAll('circle').data(fruits, d => d.id)
+    // create bowl
+    selection.selectAll('rect')
+        .data([null])
+        .enter().append('rect')
+            .attr('width', 920)
+            .attr('height', 300)
+            .attr('y', 100)
+            .attr('x', 15)
+            .attr('rx', 150)
 
     // create group element
     const groups = selection.selectAll('g').data(fruits)
