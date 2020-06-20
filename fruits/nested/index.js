@@ -1,7 +1,7 @@
 // import { select, arc } from 'd3'
 
 const svg = d3.select('svg')
-svg.style('background-color', 'lightblue')
+svg.style('background-color', 'darkseagreen')
 
 const width = svg.attr('width')
 const height = svg.attr('height')
@@ -17,22 +17,28 @@ const xPosition = (d, i) => i * 150 + 180
 const render = (selection, { fruits }) => {
     const circles = selection.selectAll('circle').data(fruits, d => d.id)
 
-    circles
-        .enter().append('circle')
-            .attr('cx', xPosition)
-            .attr('cy', height / 2)
+    // create group element
+    const groups = selection.selectAll('g').data(fruits)
+    const groupsEnter = groups.enter().append('g')
+
+    groupsEnter.merge(groups)
+        .attr('transform', (d, i) => `translate(${i * 150 + 180}, ${height / 2})`)
+    
+    groups.exit().remove()
+
+    // create circles
+    groupsEnter.append('circle')
+        .merge(groups.select('circle'))
+        .transition().duration(1000)
             .attr('r', d => radiusScale(d.type))
             .attr('fill', d => colorScale(d.type))
-        .merge(circles)
-            .transition().duration(1000)
-                .attr('cx', xPosition)
-                .attr('r', d => radiusScale(d.type))
-                .attr('fill', d => colorScale(d.type))
-    circles
-        .exit()
+
+    // create labels
+    groupsEnter.append('text')
+        .merge(groups.select('text'))
         .transition().duration(1000)
-            .attr('r', 0)
-        .remove()
+            .text(d => d.type)
+            .attr('y', 100)
 }
 
 // state manipulation logic
