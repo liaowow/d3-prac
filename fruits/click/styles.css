@@ -1,0 +1,8 @@
+body {
+    text-align: center;
+    font-size: 3em;
+    font-family: monospace;
+    margin: 0px;
+    overflow: hidden;
+    stroke-width: 5;
+}
