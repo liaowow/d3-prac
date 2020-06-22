@@ -29,7 +29,54 @@ async function drawLineChart() {
     .append('svg')
       .attr('width', dimensions.width)
       .attr('height', dimensions.height)
-  // console.log(svg)
+
+  const bounds = wrapper.append('g')
+    .style('transform', `translate(
+      ${dimensions.margin.left}px,
+      ${dimensions.margin.top}px
+    )`)
+
+  // use d3-scale module to convert values b/t two domains
+  const yScale = d3.scaleLinear()
+    .domain(d3.extent(dataset, yAccessor))
+    .range([dimensions.boundedHeight, 0])
+
+  const freezingTemperaturePlacement = yScale(32)
+  const freezingTemperatures = bounds.append('rect')
+      .attr('x', 0)
+      .attr('width', dimensions.boundedWidth)
+      .attr('y', freezingTemperaturePlacement)
+      .attr('height', dimensions.boundedHeight - freezingTemperaturePlacement)
+      .attr('fill', '#e0f3f3')
+  
+  const xScale = d3.scaleTime()
+    .domain(d3.extent(dataset, xAccessor))
+    .range([0, dimensions.boundedWidth])
+  
+  const lineGenerator = d3.line()
+    .x(d => xScale(xAccessor(d)))
+    .y(d => yScale(yAccessor(d)))
+
+  const line = bounds.append('path')
+    .attr('d', lineGenerator(dataset))
+    .attr('fill', 'none')
+    .attr('stroke', '#af9358')
+    .attr('stroke-width', 2)
+
+  const yAxisGenerator = d3.axisLeft()
+    .scale(yScale)
+  
+  const yAxis = bounds.append('g')
+    .call(yAxisGenerator)
+
+  const xAxisGenerator = d3.axisBottom()
+    .scale(xScale)
+
+  const xAxis = bounds.append('g')
+    .call(xAxisGenerator)
+    .attr('transform', `translate(0, ${dimensions.boundedHeight})`)
+    // .attr('height', dimensions.boundedHeight)
+
 }
 
 drawLineChart()
