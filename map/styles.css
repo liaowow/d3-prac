@@ -1,0 +1,17 @@
+body {
+  text-align: center;
+  font-size: 3em;
+  font-family: monospace;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.country {
+  fill: rgb(214, 246, 166);
+  stroke: rgb(70, 70, 70);
+  stroke-width: 0.25px;
+}
+
+.sphere {
+  fill: cornflowerblue;
+}
