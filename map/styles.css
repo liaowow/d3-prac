@@ -12,6 +12,10 @@ body {
   stroke-width: 0.25px;
 }
 
+.country:hover {
+  fill: gray;
+}
+
 .sphere {
   fill: cornflowerblue;
 }
